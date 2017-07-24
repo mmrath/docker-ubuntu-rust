@@ -8,6 +8,6 @@ build:
   stage: build
   script:
   - docker build -t ubuntu-rust:nightly .
-  - docker tag ubuntu-rust:nightly mmrath/ubuntu-rust
+  - docker tag ubuntu-rust:nightly mmrath/ubuntu-rust:nightly
   - docker login -u mmrath -p $DOCKER_HUB_PASS
-  - docker push mmrath/ubuntu-rust
+  - docker push mmrath/ubuntu-rust:nightly
