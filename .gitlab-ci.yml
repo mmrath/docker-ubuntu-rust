@@ -9,4 +9,5 @@ build:
   script:
   - docker build -t ubuntu-rust:nightly .
   - docker tag ubuntu-rust:nightly mmrath/ubuntu-rust
+  - docker login -u mmrath -p $DOCKER_HUB_PASS
   - docker push mmrath/ubuntu-rust
