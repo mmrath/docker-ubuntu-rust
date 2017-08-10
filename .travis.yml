@@ -4,7 +4,10 @@ services:
     - docker
 
 script:
-    - docker build -t ubuntu-rust:nightly .
+    - docker build -t ubuntu-rust:nightly -f nightly/Dockerfile .
     - docker tag ubuntu-rust:nightly mmrath/ubuntu-rust:nightly
+    - docker build -t ubuntu-rust:stable -f stable/Dockerfile .
+    - docker tag ubuntu-rust:stable mmrath/ubuntu-rust:stable
     - docker login -u $DOCKER_HUB_USER -p $DOCKER_HUB_PASS
     - docker push mmrath/ubuntu-rust:nightly
+    - docker push mmrath/ubuntu-rust:stable

@@ -4,18 +4,10 @@
 set -e
 set -x
 
-triple=x86_64-unknown-linux-gnu
-
 # install curl (needed to install rust)
-apt-get update && apt-get install -y --force-yes curl make gdb g++-multilib lib32stdc++6 libpq-dev libssl-dev libncurses5-dev
+apt-get update && apt-get install -y curl make gdb g++-multilib lib32stdc++6 libpq-dev libssl-dev libncurses5-dev
 
-# install rust
-curl -sL https://static.rust-lang.org/dist/rust-nightly-$triple.tar.gz | tar xvz -C /tmp
-/tmp/rust-nightly-$triple/install.sh
-
-# install cargo
-curl -sL https://static.rust-lang.org/cargo-dist/cargo-nightly-$triple.tar.gz | tar xvz -C /tmp
-/tmp/cargo-nightly-$triple/install.sh
+curl https://sh.rustup.rs -sSf | sh -s -- -y --default-toolchain $1
 
 # cleanup package manager
 apt-get remove --purge -y curl && apt-get autoclean && apt-get clean
